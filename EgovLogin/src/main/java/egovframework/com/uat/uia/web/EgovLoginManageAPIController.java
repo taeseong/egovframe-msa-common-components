@@ -166,6 +166,10 @@ public class EgovLoginManageAPIController {
                 ResponseCookie accessTokenCookie = jwtProvider.createCookie("accessToken", accessToken, accessTokenMaxAge);
                 response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
 
+                long refreshTokenMaxAge = Long.parseLong(jwtProvider.getRefreshExpiration()) / 1000 + 60;
+                ResponseCookie refreshTokenCookie = jwtProvider.createCookie("refreshToken", refreshToken, refreshTokenMaxAge);
+                response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+
                 message.put("status", "loginSuccess");
                 message.put("userInfo", loginDTO.getName() + "(" + loginDTO.getId() + ")");
                 message.put("userId", loginDTO.getId());
