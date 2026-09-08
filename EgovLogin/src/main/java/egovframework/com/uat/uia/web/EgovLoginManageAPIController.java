@@ -312,7 +312,7 @@ public class EgovLoginManageAPIController {
                     .add("userId", jwtProvider.extractUserId(refreshToken))
                     .add("userNm", jwtProvider.extractUserNm(refreshToken))
                     .add("uniqId", jwtProvider.extractUniqId(refreshToken))
-                    .add("authId", jwtProvider.extractAuthId(refreshToken))
+                    .add("authLs", jwtProvider.extractAuthLs(refreshToken))
                     .issuedAt(new Date(System.currentTimeMillis()))
                     .expiration(new Date(System.currentTimeMillis() + Long.parseLong(jwtProvider.getAccessExpiration())))
                     .build();

@@ -124,9 +124,9 @@ public class EgovJwtProvider {
                 "" : refreshExtractClaims(token).get("uniqId").toString();
     }
 
-    public String extractAuthId(String token) {
-        return ObjectUtils.isEmpty(refreshExtractClaims(token).get("authId")) ?
-                "" : refreshExtractClaims(token).get("authId").toString();
+    public String extractAuthLs(String token) {
+        return ObjectUtils.isEmpty(refreshExtractClaims(token).get("authLs")) ?
+                "" : refreshExtractClaims(token).get("authLs").toString();
     }
 
     public String encrypt(String s) {
