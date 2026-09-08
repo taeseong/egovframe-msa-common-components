@@ -127,7 +127,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                     long accessCookieMaxAge = Duration.ofMillis(Long.parseLong(gatewayJwtProvider.getAccessExpiration())).getSeconds();
                     ResponseCookie accessTokenCookie = ResponseCookie.from("accessToken", newAccessToken)
                             .httpOnly(true)
-                            .secure(false)
+                            .secure(true)
                             .path("/")
                             .maxAge(accessCookieMaxAge + 10)
                             .sameSite("Strict")
