@@ -150,6 +150,12 @@ public class EgovFileAPIController {
         fileVO.setFileSn(decodeFileSn);
 
         fileVO = fileMngService.detailFileInf(fileVO);
+        if (fileVO == null) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            log.warn("첨부파일 정보를 찾을 수 없습니다. atchFileId={}, fileSn={}", decodeFileId, decodeFileSn);
+            return;
+        }
+
         File file = new File(fileVO.getFileStreCours(), fileVO.getStreFileNm());
 
         if (!file.exists()) {

@@ -176,7 +176,8 @@ public class EgovFileServiceImpl extends EgovAbstractServiceImpl implements Egov
         FileDetailId fileDetailId = new FileDetailId();
         fileDetailId.setAtchFileId(fileVO.getAtchFileId());
         fileDetailId.setFileSn(fileVO.getFileSn());
-        fileVO = EgovBoardUtility.fileDeatailEntityToVO(fileDetailRepository.findById(fileDetailId).get());
-        return fileVO;
+        return fileDetailRepository.findById(fileDetailId)
+                .map(EgovBoardUtility::fileDeatailEntityToVO)
+                .orElse(null);
     }
 }
