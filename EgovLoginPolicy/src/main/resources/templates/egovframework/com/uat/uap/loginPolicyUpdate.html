@@ -96,6 +96,7 @@
     }
 
     function loginPolicyDetail() {
+        const isRegistered = [[${loginPolicyVO.regYn == 'Y'}]];
         $.ajax({
             url: '/uat/uap/loginPolicyDetail',
             method: 'post',
@@ -118,10 +119,10 @@
                     html += '<option value="N">[(#{input.no})]</option>';
                 }
                 $('#lmttAt').html(html);
-                if (response.result.lastUpdtPnttm) {
+                if (isRegistered && response.result.lastUpdtPnttm) {
                     $('#regDate').val(response.result.lastUpdtPnttm.substring(0, 10));
                 } else {
-                    $('#regDate').val();
+                    $('#regDate').val('');
                 }
             }
         }).fail(function(jqXHR, textStatus, errorThrown) {
