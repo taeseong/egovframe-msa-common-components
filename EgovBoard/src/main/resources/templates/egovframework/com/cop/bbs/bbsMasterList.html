@@ -32,7 +32,7 @@
                         </select>
                     </div>
                     <div class="form-conts btn-ico-wrap searchKeyword">
-                        <input type="text" id="searchKeyword" name="searchKeyword" class="krds-input" placeholder="검색어를 입력하세요.">
+                        <input type="text" id="searchKeyword" name="searchKeyword" class="krds-input" th:placeholder="#{comCopBbs.boardMasterVO.list.searchPlaceholder}">
                         <button type="button" class="krds-btn medium icon"  th:onclick="bbsMasterSearch()">
                             <span class="sr-only">검색</span>
                             <i class="svg-icon ico-sch"></i>
