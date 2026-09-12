@@ -39,6 +39,12 @@
 <div id="qustnrRespondInfo-pagination-container" class="krds-pagination w-page"></div>
 
 <script th:inline="javascript" defer>
+    function escapeRespondentHtml(value) {
+        if (value === null || value === undefined) return '';
+        return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
     function qustnrRespondInfoList() {
         const param = {
             qustnrTmplatId: document.getElementById('qustnrTmplatId').value,
@@ -67,10 +73,10 @@
                     const number = paginationInfo.totalRecordCount - paginationInfo.firstRecordIndex - index;
                     html += '<tr>';
                     html += '<td class="text-center">'+number+'</td>';
-                    html += '<td class="text-center">'+qustnrRespondInfo.qustnrSj+'</td>';
-                    html += '<td class="text-center">'+qustnrRespondInfo.respondNm+'</a></td>';
-                    html += '<td class="text-center">'+qustnrRespondInfo.userNm+'</td>';
-                    html += '<td class="text-center">'+qustnrRespondInfo.frstRegistPnttm+'</td>';
+                    html += '<td class="text-center">'+escapeRespondentHtml(qustnrRespondInfo.qustnrSj)+'</td>';
+                    html += '<td class="text-center">'+escapeRespondentHtml(qustnrRespondInfo.respondNm)+'</td>';
+                    html += '<td class="text-center">'+escapeRespondentHtml(qustnrRespondInfo.userNm)+'</td>';
+                    html += '<td class="text-center">'+escapeRespondentHtml(qustnrRespondInfo.frstRegistPnttm)+'</td>';
                     html += '</tr>';
                 });
             }
