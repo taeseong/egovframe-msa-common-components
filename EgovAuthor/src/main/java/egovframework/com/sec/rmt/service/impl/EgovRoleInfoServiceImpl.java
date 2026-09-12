@@ -155,7 +155,6 @@ public class EgovRoleInfoServiceImpl extends EgovAbstractServiceImpl implements 
                     result.setRoleDc(roleInfo.getRoleDc());
                     result.setRoleTy(roleInfo.getRoleTy());
                     result.setRoleSort(roleInfo.getRoleSort());
-                    result.setRoleCreatDe(LocalDateTime.now().format(formatter));
                     return repository.save(result);
                 })
                 .map(EgovRoleInfoUtility::roleEntityToVO).orElse(null);
