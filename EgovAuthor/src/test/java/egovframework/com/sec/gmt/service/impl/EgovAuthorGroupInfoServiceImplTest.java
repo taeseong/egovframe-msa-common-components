@@ -57,4 +57,19 @@ class EgovAuthorGroupInfoServiceImplTest {
 		log.debug("getGroupDc={}, {}", detailResult.getGroupDc(), insertResult.getGroupDc());
 	}
 
+	@Test
+	void updatePreservesCreationDate() {
+		AuthorGroupInfoVO group = new AuthorGroupInfoVO();
+		group.setGroupNm("등록일 보존 테스트");
+		group.setGroupDc("수정 전");
+		AuthorGroupInfoVO inserted = egovAuthorGroupInfoService.insert(group);
+		String creationDate = inserted.getGroupCreatDe();
+		inserted.setGroupDc("수정 후");
+
+		AuthorGroupInfoVO updated = egovAuthorGroupInfoService.update(inserted);
+
+		assertThat(updated.getGroupCreatDe()).isEqualTo(creationDate);
+		assertThat(updated.getGroupDc()).isEqualTo("수정 후");
+	}
+
 }

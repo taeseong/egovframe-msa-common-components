@@ -81,7 +81,6 @@ public class EgovAuthorGroupInfoServiceImpl extends EgovAbstractServiceImpl impl
                 .map(result -> {
                     result.setGroupNm(authorGroupInfoVO.getGroupNm());
                     result.setGroupDc(authorGroupInfoVO.getGroupDc());
-                    result.setGroupCreatDe(LocalDateTime.now().format(formatter));
                     return repository.save(result);
                 })
                 .map(EgovAuthorGroupInfoUtility::entityToVO).orElse(null);
