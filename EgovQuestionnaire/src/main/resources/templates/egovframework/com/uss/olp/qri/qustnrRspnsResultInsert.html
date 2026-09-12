@@ -313,7 +313,7 @@
                                 html += '<div class="krds-form-check medium">';
                                 html += '<input type="checkbox" name="'+escapeHtml(iem.qustnrQesitmId)+'" id="chk_'+itemNum+'_'+iemNum+
                                     '" value="'+escapeHtml(iem.qustnrIemId)+'" data-tyCode="'+escapeHtml(iem.qestnTyCode)+'" data-mxmmChoice="'+escapeHtml(iem.mxmmChoiseCo)+
-                                    '" onclick="checkboxAmount('+Number(iem.qustnrQesitmId)+','+Number(iem.mxmmChoiseCo)+')">';
+                                    '" onclick="checkboxAmount(this,'+Number(iem.mxmmChoiseCo)+')">';
                                 html += '<label for="chk_'+itemNum+'_'+iemNum+'">'+escapeHtml(iem.iemCn)+'</label>';
                                 html += '</div>';
                                 html += '</div>';
@@ -333,18 +333,12 @@
     }
 
     // 선택한 설문항목 최대개수 확인
-    function checkboxAmount(checkedId, mxmmChoiseCo) {
-        const totalCheckedId = checkedId.length;
-        let checkedCount = 0;
-        for (let i = 0; i < totalCheckedId; i++) {
-            if (checkedId[i].checked) {
-                checkedCount++;
-            }
-            if (checkedCount > mxmmChoiseCo) {
-                alert('[(#{comUssOlpQnn.alert.mxmmChoiseCo})] '+mxmmChoiseCo+'[(#{comUssOlpQnn.alert.exceed})]');
-                checkedId[i].checked = false;
-                return;
-            }
+    function checkboxAmount(checkbox, mxmmChoiseCo) {
+        const checkedCount = Array.from(document.getElementsByName(checkbox.name))
+            .filter(item => item.checked).length;
+        if (checkedCount > mxmmChoiseCo) {
+            alert('[(#{comUssOlpQnn.alert.mxmmChoiseCo})] '+mxmmChoiseCo+'[(#{comUssOlpQnn.alert.exceed})]');
+            checkbox.checked = false;
         }
     }
 </script>
